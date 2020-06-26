@@ -1,9 +1,6 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -68,11 +65,24 @@ public class BaseFunc {
         wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
+    protected boolean isElementPresent(By locator) {
+        try {
+            driver.findElement(locator);
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    public double getDoubleValue(By locator) {
+        return Double.parseDouble((driver.findElement(locator).getText()).replace(",", ".")
+                .substring(0, (driver.findElement(locator).getText()).replace(",", ".").lastIndexOf(' ')));
+    }
+
     public List<WebElement> findElements(By locator) {
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
         return driver.findElements(locator);
     }
-
 
     public WebElement findElement(By locator) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));

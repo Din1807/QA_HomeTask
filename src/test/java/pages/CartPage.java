@@ -18,33 +18,27 @@ public class CartPage {
     }
 
     public double getCartItemPrice() {
-        double itemPrice = (Double.parseDouble((baseFunc.findElement(PRICE_PER_ONE).getText()).replace(",", ".")
-                .substring(0, (baseFunc.findElement(PRICE_PER_ONE).getText()).replace(",", ".").lastIndexOf(' '))));
-        return itemPrice;
+        baseFunc.waitForElements(PRICE_PER_ONE);
+        return baseFunc.getDoubleValue(PRICE_PER_ONE);
     }
 
     public String getCartItemName() {
-        String itemName = baseFunc.findElement(CART_PRODUCT_NAME).getText();
-        return itemName;
+        return baseFunc.findElement(CART_PRODUCT_NAME).getText();
     }
 
     public double getCartItemTotalSum() {
-        double itemTotalSum = Double.parseDouble((baseFunc.findElement(CART_PRODUCT_TOTAL_SUM).getText()).replace(",", ".")
-                .substring(0, (baseFunc.findElement(CART_PRODUCT_TOTAL_SUM).getText()).replace(",", ".").lastIndexOf(' ')));
-        return itemTotalSum;
+        baseFunc.waitForElements(CART_PRODUCT_TOTAL_SUM);
+        return baseFunc.getDoubleValue(CART_PRODUCT_TOTAL_SUM);
     }
 
     public int getCartItemQuantity() {
-        int itemCartQuantity = Integer.parseInt(baseFunc.findElement(CART_PRODUCT_QUANTITY).getAttribute("data-original-quantity"));
-        return itemCartQuantity;
+        return Integer.parseInt(baseFunc.findElement(CART_PRODUCT_QUANTITY).getAttribute("data-original-quantity"));
     }
 
     public double getItemPriceInList(int itemIndex) {
         baseFunc.moveToElement(CART_PRODUCT_LIST);
         List<WebElement> prices = baseFunc.findElements(CART_PRODUCT_LIST);
-        double itemCost = Double.parseDouble(prices.get(itemIndex).findElement(PRICE_PER_ONE).getText().replace(",", ".")
+        return Double.parseDouble(prices.get(itemIndex).findElement(PRICE_PER_ONE).getText().replace(",", ".")
                 .substring(0, (baseFunc.findElement(CART_PRODUCT_TOTAL_SUM).getText()).replace(",", ".").lastIndexOf(' ')));
-        return itemCost;
     }
-
 }

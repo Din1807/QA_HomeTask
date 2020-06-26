@@ -1,6 +1,7 @@
 package pages;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
@@ -33,8 +34,6 @@ public class HomePage {
             System.out.println("Not available item");
             baseFunc.closeBrowser();
             System.exit(1);
-
         }
-
     }
 }

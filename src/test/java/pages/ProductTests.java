@@ -68,9 +68,9 @@ public class ProductTests {
         LOGGER.info("Item added to cart");
         itemPage.goToCart();
         LOGGER.info("Open cart");
-        LOGGER.info("In item page price " + firstItemPrice + ". In cart price " + cartPage.getItemPriceInList(0));
+        LOGGER.info("First item page price " + firstItemPrice + ". In cart price " + cartPage.getItemPriceInList(0));
         assertEquals(firstItemPrice, cartPage.getItemPriceInList(0), "Wrong first item price");
-        LOGGER.info("In item page price " + secondItemPrice + ". In cart price " + cartPage.getItemPriceInList(1));
+        LOGGER.info("Second item page price " + secondItemPrice + ". In cart price " + cartPage.getItemPriceInList(1));
         assertEquals(secondItemPrice, cartPage.getItemPriceInList(1), "Wrong second item price");
         LOGGER.info("Total price in item page " + (cartPage.getItemPriceInList(0) + cartPage.getItemPriceInList(1)) + ". In cart total price " + cartPage.getCartItemTotalSum());
         assertEquals(cartPage.getCartItemTotalSum(), cartPage.getItemPriceInList(0) + cartPage.getItemPriceInList(1), "Wrong item total price");
